@@ -49,6 +49,15 @@ function sendMail(smtpData, mailData) {
 
 
 /* index ----------------------------------- */
+app.get('/', (req,res) => {
+    connection.query(
+        'select * from posts; select * from joins',
+        (error, results) => {
+            res.render('index.ejs',{posts: results[0], joins: results[1]});
+        }
+    );
+});
+
 app.get('/index', (req,res) => {
     connection.query(
         'select * from posts; select * from joins',

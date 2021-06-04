@@ -7,7 +7,7 @@ ALTER TABLE posts ADD COLUMN email TEXT;
 
 
 
-INSERT INTO posts (date,time,title,content,place,purpose,level) VALUES ('3/30','18:00','シングルス対戦募集','県大会出場レベルの対戦相手をお募集します。カットマンであればなお嬉しいです！','千葉県','練習','中級者');
+INSERT INTO posts (date,time,title,content,place,purpose,level,name,email) VALUES ('3/30','18:00','シングルス対戦募集','県大会出場レベルの対戦相手をお募集します。カットマンであればなお嬉しいです！','千葉県','練習','中級者','a','a@gmail.com');
 INSERT INTO posts (date,time,title,content,place,purpose,level) VALUES ('4/15','14:00','お気軽に募集','日常的な対戦相手をお募集します！','東京都','試合','初級者');
 
 INSERT INTO users (name,email,password) VALUES ('a','a@gmail.com','aaa');

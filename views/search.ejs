@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Pinpooon! CREATE</title>
+    <meta name="description" content="卓球マッチングアプリ">
+    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-nav2">
+            <a href="/index">Pinpooon!</a>
+        </div>
+    </header>
+    <div class="wrapper form-side">
+        <div class="form-left">
+            <h2>予定検索</h2>
+            <form action="/searcher" method="POST">
+            <div>
+                <label for="date">日付</label>
+                <input type="text" id="date" name="date">
+            </div>
+            <div>
+                <label for="place">都道府県</label>
+                <input type="text" id="place" name="place">
+            </div>
+            <div>
+                <label for="place">レベル</label>
+                <input type="text" id="level" name="level">
+            </div>
+            <input type="submit" class="button form-btn" value="検索">
+            </form>
+        </div>
+        <img class="login-img" src="../images/search.png">
+    </div>
+    <footer>
+        <div class="wrapper">
+            <p><small>&copy; 2021 Pinpooon</small></p>
+        </div>
+    </footer>
+</body>
+</html>

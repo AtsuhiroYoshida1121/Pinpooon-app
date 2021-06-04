@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Pinpooon! Result</title>
+    <meta name="description" content="卓球マッチングアプリ">
+    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-nav2">
+            <a href="/index">Pinpooon!</a>
+        </div>
+    </header>
+    <div class="search-content">
+        <a class="search-results">検索結果</a>
+        <% posts.forEach((post) => { %>
+            <div class="wrapper post">
+                <article>
+                    <div class="post-info">
+                        <a class="post-state">受付中</a>
+                        <a class="post-date"><%= post.date %> | <%= post.time %> | <%= post.name%>さんの予定</a>
+                    </div>
+                    <h2 class="post-title"><%= post.title %></h2>
+                    <p class="post-content">
+                        <%= post.content %>
+                    </p>
+                    <div class="post-box">
+                        <p class="post-place">都道府県：<%= post.place %></p>
+                        <p class="post-purpose">目的：<%= post.purpose %></p>
+                        <p class="post-level">レベル：<%= post.level %></p>
+                        <% if (locals.username === "ゲスト") { %>
+                            <a href="/login" class="submit">ログイン</a>
+                        <% } else if (locals.username === post.name) { %>
+                            <form action="/delete/<%= post.id %>" method="POST">
+                                <input class="delete" type="submit" value="削除">
+                            </form>
+                        <% } else { %>
+                            <form action="/join/<%= post.id %>" method="POST">
+                                <input class="submit" type="submit" value="参加する">
+                            </form>
+                        <% } %>
+                    </div>
+                    <div class="partic">
+                        <h2 class="post-title">参加者</h2>
+                        <ul>
+                            <% joins.forEach((join) => { %>
+                                <% if (join.join_id === post.id) {%>
+                                <li><%= join.join_name %>: 参加します！</li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+        <% }); %>
+        <a class="signup-btn" href="/index" style="margin-left: 45%;">一覧に戻る</a>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <p><small>&copy; 2021 Pinpooon</small></p>
+        </div>
+    </footer>
+</body>
+</html>

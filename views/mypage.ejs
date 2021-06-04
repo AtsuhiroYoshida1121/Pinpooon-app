@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Pinpooon! MYPAGE</title>
+    <meta name="description" content="卓球マッチングアプリ">
+    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <%- include('_header')%>
+    <div id="home" class="big-bg">
+        <div class="home-content wrapper">
+            <h2 class="page-title">マイページ</h2>
+            <p>申込中の相手と開催中のイベントを確認しよう</p>
+        </div>
+    </div>
+    <div class="mypage-content wrapper">
+        <a class="mypage-application">申込中</a>
+        <% if (join_posts.length === 0) { %>
+            <div class="wrapper post">
+                <article>
+                    <div class="post-info">
+                        <p class="post-content">
+                            まだ予定の申し込みをしていません！<br>
+                            予定一覧から対戦相手を見つけよう！    <span><a href="/index">予定一覧へ</a></span>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        <% } %>
+        <% posts.forEach((post) => { %>
+        <% join_posts.forEach((join_post) => {%>
+            <% if (post.id === join_post.join_id) { %>
+            <div class="wrapper post">
+                <article>
+                    <div class="post-info">
+                        <a class="post-state">受付中</a>
+                        <a class="post-date"><%= post.date %> | <%= post.time %> | <%= post.name%>さんの予定</a>
+                    </div>
+                    <h2 class="post-title"><%= post.title %></h2>
+                    <p class="post-content">
+                        <%= post.content %>
+                    </p>
+                    <div class="post-box">
+                        <p class="post-place">都道府県：<%= post.place %></p>
+                        <p class="post-purpose">目的：<%= post.purpose %></p>
+                        <p class="post-level">レベル：<%= post.level %></p>
+                        <% if (locals.username === "ゲスト") { %>
+                            <a href="/login" class="submit">ログイン</a>
+                        <% } else if (locals.username === post.name) { %>
+                            <form action="/delete/<%= post.id %>" method="POST">
+                                <input class="delete" type="submit" value="削除">
+                            </form>
+                        <% } else { %>
+                            <form action="/cancel/<%= post.id %>" method="POST">
+                                <input class="submit" type="submit" value="取り消しする">
+                            </form>
+                        <% } %>
+                    </div>
+                    <div class="partic">
+                        <h2 class="post-title">参加者</h2>
+                        <ul>
+                            <% joins.forEach((join) => { %>
+                                <% if (join.join_id === post.id) {%>
+                                <li><%= join.join_name %>: 参加します！</li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            <% } %>
+        <% }); %>
+        <% }); %>
+        </div>
+
+    <div class="mypage-content wrapper">
+        <a class="mypage-open">開催中</a>
+        <% posts.forEach((post) => { %>
+            <%  if (locals.username === post.name) { %>
+            <div class="wrapper post">
+                <article>
+                    <div class="post-info">
+                        <a class="post-state">受付中</a>
+                        <a class="post-date"><%= post.date %> | <%= post.time %> | <%= post.name%>さんの予定</a>
+                    </div>
+                    <h2 class="post-title"><%= post.title %></h2>
+                    <p class="post-content">
+                        <%= post.content %>
+                    </p>
+                    <div class="post-box">
+                        <p class="post-place">都道府県：<%= post.place %></p>
+                        <p class="post-purpose">目的：<%= post.purpose %></p>
+                        <p class="post-level">レベル：<%= post.level %></p>
+                        <form action="/delete/<%= post.id %>" method="POST">
+                            <input class="delete" type="submit" value="削除">
+                        </form>
+                    </div>
+                    <div class="partic">
+                        <h2 class="post-title">参加者</h2>
+                        <ul>
+                            <% joins.forEach((join) => { %>
+                                <% if (join.join_id === post.id) {%>
+                                <li><%= join.join_name %>: 参加します！</li>
+                                <% } %>
+                            <% }); %>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            <% } %>
+        <% }); %>
+        </div>
+    </div>
+
+
+    <div id="contact" class="big-bg">
+        <div class="wrapper contact-box">
+            <h2 class="page-title">Contact</h2>
+            <form action="#">
+            <div>
+                <label for="name">お名前</label>
+                <input type="text" id="name" name="your-name">
+            </div>
+            <div>
+                <label for="e-mail">メールアドレス</label>
+                <input type="email" id="email" name="your-email">
+            </div>
+            <div>
+                <label for="message">メッセージ</label>
+                <textarea name="your-message" id="message"></textarea>
+            </div>
+            <input type="submit" class="button" value="送信">
+            </form>
+        </div>
+    </div>
+    <footer>
+        <div class="wrapper">
+            <p><small>&copy; 2021 Pinpooon</small></p>
+        </div>
+    </footer>
+</body>
+</html>

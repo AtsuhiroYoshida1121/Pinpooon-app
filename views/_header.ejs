@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Pinpooon! ABOUT</title>
+    <meta name="description" content="卓球マッチングアプリ">
+    <meta name=”viewport” content=”width=device-width,initial-scale=1.0″>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="http://unpkg.com/ress/dist/ress.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Philosopher">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+
+<header>
+    <div class="header-nav">
+        <a href="/about">What's Pinpooon!</a>
+        <a style="color: #fff;">ようこそ、<%= locals.username%>さん</a>
+        <ul>
+            <li><a href="/search">相手を探す</a></li>
+            <li><a href="/index">予定一覧</a></li>
+            <% if (locals.isLoggedIn ) { %>
+                <li><a href="/create">予定を作る</a></li>
+                <li><a href="/mypage">マイページ</a></li>
+                <li><a href="/logout">ログアウト</a></li>
+            <% } else { %>
+                <li><a href="/signup">新規登録</a></li>
+                <li><a href="/login">ログイン</a></li>
+            <% } %>
+
+        </ul>
+    </div>
+</header>
+
+</body>
+</html>

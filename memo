@@ -1,0 +1,52 @@
+CREATE TABLE posts (id INT AUTO_INCREMENT, date TEXT, time TEXT, title TEXT, content TEXT, place TEXT, purpose TEXT, level TEXT,PRIMARY KEY (id));
+CREATE TABLE users (id INT AUTO_INCREMENT, name TEXT, email TEXT, password TEXT, PRIMARY KEY (id));
+CREATE TABLE joins (id INT AUTO_INCREMENT, join_id INT, join_name TEXT, join_email TEXT, PRIMARY KEY (id));
+
+ALTER TABLE posts ADD COLUMN name TEXT;
+ALTER TABLE posts ADD COLUMN email TEXT;
+
+
+
+INSERT INTO posts (date,time,title,content,place,purpose,level) VALUES ('3/30','18:00','シングルス対戦募集','県大会出場レベルの対戦相手をお募集します。カットマンであればなお嬉しいです！','千葉県','練習','中級者');
+INSERT INTO posts (date,time,title,content,place,purpose,level) VALUES ('4/15','14:00','お気軽に募集','日常的な対戦相手をお募集します！','東京都','試合','初級者');
+
+INSERT INTO users (name,email,password) VALUES ('a','a@gmail.com','aaa');
+INSERT INTO users (name,email,password) VALUES ('b','b@gmail.com','bbb');
+
+INSERT INTO joins (join_id,join_name,join_email) VALUES (1,'Takeshi','Takeshi@gmail.com');
+INSERT INTO joins (join_id,join_name,join_email) VALUES (2,'Nobita','Nobita@gmail.com');
+INSERT INTO joins (join_id,join_name,join_email) VALUES (1,'Aida','Aida@gmail.com');
+INSERT INTO joins (join_id,join_name,join_email) VALUES (?,?,?);
+
+UPDATE posts SET name = 'a' WHERE id = 1;
+UPDATE posts SET name = 'b' WHERE id = 2;
+
+UPDATE posts SET email = 'a@gmail.com' WHERE id = 1;
+UPDATE posts SET email = 'b@gmail.com' WHERE id = 2;
+UPDATE posts SET email = 'c@gmail.com' WHERE id = 3;
+
+
+    <% const posts = [
+    {
+        id: 1,
+        date: '3/30',
+        time: '18:00',
+        title: 'シングルス対戦募集',
+        content: '県大会出場レベルの対戦相手をお募集します。カットマンであればなお嬉しいです！',
+        place: '千葉県',
+        purpose: '練習',
+        level: '中級者',
+        partics: ['ニックネーム１','ニックネーム2']
+    },
+    {
+        id: 2,
+        date: '3/30',
+        time: '18:00',
+        title: 'シングルス対戦募集',
+        content: '県大会出場レベルの対戦相手をお募集します。カットマンであればなお嬉しいです！',
+        place: '千葉県',
+        purpose: '練習',
+        level: '中級者',
+        partics: ['ニックネーム１','ニックネーム2','ニックネーム3']
+    }
+    ]%>

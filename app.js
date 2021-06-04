@@ -3,7 +3,7 @@ const app = express();
 const mysql = require('mysql');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
-/* const { connected, send } = require('process'); */
+const { connected, send } = require('process');
 const Nodemailer= require('nodemailer');
 
 app.use(express.static('public'));
